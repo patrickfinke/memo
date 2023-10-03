@@ -1,0 +1,81 @@
+{
+    "trial": "algorithm",
+    "param_grid": {
+        "restart": {"type_": "range", "stop": 25},
+        "dataset": ["mnist"],
+        "n_iter": {"type_": "range", "start": 20, "stop": 520, "step": 20},
+        "max_bias": {"type_": "range", "start": 0.0, "stop": 2.6, "step": 0.1},
+        "activation": ["thres"]
+    },
+    "plots": [
+        {
+            "type": "dataset_images",
+            "name": "dataset",
+            "dataset": "mnist_original",
+            "rows": 2, "cols": 5,
+            "classes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            "img_width": 28, "img_height": 28,
+            "figsize": [3.0, 1.2]
+        },
+        {
+            "type": "heatmap",
+            "name": "interpolation",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "interpolated", "agg": "mean", "round": 2},
+            "contours": {"smoothing": 0.8, "levels": 15},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "width of first layer $n$",
+            "figsize": [2.38, 1.9]
+        },
+        {
+            "type": "slices",
+            "name": "interpolation_iter",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "max_bias", "col": "n_iter", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [100, 300, 500],
+            "legend": {"title": "width $n$"},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "slices",
+            "name": "interpolation_bias",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [0.0, 1.0, 2.5],
+            "legend": {"title": "max bias $\\lambda$"},
+            "xlabel": "width of first layer $n$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "heatmap",
+            "name": "width",
+            "vmin": 0, "vmax": 49418,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "contours": {"smoothing": 0.8, "levels": 15},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "width of first layer $n$",
+            "figsize": [2.38, 1.9]
+        },
+        {
+            "type": "slices",
+            "name": "width_iter",
+            "vmin": 0, "vmax": 49418,
+            "pivot": {"idx": "max_bias", "col": "n_iter", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [100, 300, 500],
+            "marker_threshold": 0.99,
+            "legend": {"title": "width $n$"},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "slices",
+            "name": "width_bias",
+            "vmin": 0, "vmax": 49418,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [0.0, 1.0, 2.5],
+            "marker_threshold": 0.99,
+            "legend": {"title": "max bias $\\lambda$"},
+            "xlabel": "width of first layer $n$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        }
+    ]
+}

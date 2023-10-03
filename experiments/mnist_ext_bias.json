@@ -1,0 +1,23 @@
+{
+    "trial": "algorithm",
+    "param_grid": {
+        "restart": {"type_": "range", "stop": 25},
+        "dataset": ["mnist"],
+        "n_iter": {"type_": "range", "start": 1000, "stop": 11000, "step": 1000},
+        "max_bias": [0.0, 1.0, 2.5],
+        "activation": ["thres"]
+    },
+    "plots": [
+        {
+            "type": "slices",
+            "name": "width_bias",
+            "vmin": 0, "vmax": 27500,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "second_dim_out", "agg": "mean"},
+            "slices": [0.0, 1.0, 2.5],
+            "marker_threshold": 0.99,
+            "legend": {"title": "max bias $\\lambda$"},
+            "figsize": [2.15, 0.95],
+            "xlabel": "width of first layer $n$", "ylabel": " "
+        }
+    ]
+}

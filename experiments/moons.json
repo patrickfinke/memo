@@ -1,0 +1,175 @@
+{
+    "trial": "algorithm",
+    "param_grid": {
+        "restart": {"type_": "range", "stop": 50},
+        "dataset": ["moons"],
+        "n_iter": {"type_": "range", "start": 10, "stop": 510, "step": 10},
+        "max_bias": {"type_": "range", "start": 0.0, "stop": 2.55, "step": 0.05},
+        "activation": ["thres"]
+    },
+    "plots": [
+        {
+            "type": "dataset_2d",
+            "name": "dataset",
+            "dataset": "moons",
+            "figsize": [2.72, 2.00]
+        },
+        {
+            "type": "heatmap",
+            "name": "interpolation",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "interpolated", "agg": "mean", "round": 2},
+            "contours": {"smoothing": 0.8, "levels": 15},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "width of first layer $n$",
+            "figsize": [2.38, 1.9]
+        },
+        {
+            "type": "slices",
+            "name": "interpolation_iter",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "max_bias", "col": "n_iter", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [50, 200, 500],
+            "legend": {"title": "width $n$"},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "slices",
+            "name": "interpolation_bias",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [0.0, 0.75, 2.5],
+            "legend": {"title": "max bias $\\lambda$"},
+            "xlabel": "width of first layer $n$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "heatmap",
+            "name": "width",
+            "vmin": 0, "vmax": 26,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "contours": {"smoothing": 0.8, "levels": 15},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "width of first layer $n$",
+            "figsize": [2.38, 1.9]
+        },
+        {
+            "type": "slices",
+            "name": "width_iter",
+            "vmin": 0, "vmax": 26,
+            "pivot": {"idx": "max_bias", "col": "n_iter", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [50, 200, 500],
+            "marker_threshold": 0.99, "mark_every": 2,
+            "legend": {"title": "width $n$"},
+            "xlabel": "maximal bias $\\lambda$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "slices",
+            "name": "width_bias",
+            "vmin": 0, "vmax": 26,
+            "pivot": {"idx": "n_iter", "col": "max_bias", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [0.0, 0.75, 2.5],
+            "marker_threshold": 0.99, "mark_every": 2,
+            "legend": {"title": "max bias $\\lambda$"},
+            "xlabel": "width of first layer $n$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary",
+            "dataset": "moons",
+            "model": {"n_iter": 2000, "max_bias": 1.0, "activation": "thres"},
+            "figsize": [3.72, 3.00]
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_100_00",
+            "dataset": "moons",
+            "model": {"n_iter": 100, "max_bias": 0.0, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": "$\\lambda = 0.0$", "ylabel": "$n = 100$",
+            "figsize": [3.0, 1.5],
+            "outline": false
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_250_00",
+            "dataset": "moons",
+            "model": {"n_iter": 250, "max_bias": 0.0, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": " ", "ylabel": "$n = 250$",
+            "figsize": [3.0, 1.5],
+            "outline": false
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_500_00",
+            "dataset": "moons",
+            "model": {"n_iter": 500, "max_bias": 0.0, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": " ", "ylabel": "$n = 500$",
+            "figsize": [3.0, 1.5],
+            "outline": false
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_100_05",
+            "dataset": "moons",
+            "model": {"n_iter": 100, "max_bias": 0.5, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": "$\\lambda = 0.5$", "ylabel": " ",
+            "figsize": [3.0, 1.5],
+            "outline": false
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_250_05",
+            "dataset": "moons",
+            "model": {"n_iter": 250, "max_bias": 0.5, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": " ", "ylabel": " ",
+            "figsize": [3.0, 1.5],
+            "outline": true
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_500_05",
+            "dataset": "moons",
+            "model": {"n_iter": 500, "max_bias": 0.5, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": " ", "ylabel": " ",
+            "figsize": [3.0, 1.5],
+            "outline": true
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_100_10",
+            "dataset": "moons",
+            "model": {"n_iter": 100, "max_bias": 1.0, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": "$\\lambda = 1.0$", "ylabel": " ",
+            "figsize": [3.0, 1.5],
+            "outline": true
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_250_10",
+            "dataset": "moons",
+            "model": {"n_iter": 250, "max_bias": 1.0, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": " ", "ylabel": " ",
+            "figsize": [3.0, 1.5],
+            "outline": true
+        },
+        {
+            "type": "boundary_2d",
+            "name": "boundary_500_10",
+            "dataset": "moons",
+            "model": {"n_iter": 500, "max_bias": 1.0, "activation": "thres"},
+            "xticks": false, "yticks": false, "legend": false,
+            "xlabel": " ", "ylabel": " ",
+            "figsize": [3.0, 1.5],
+            "outline": true
+        }
+    ]
+}

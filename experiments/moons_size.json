@@ -1,0 +1,96 @@
+{
+    "trial": "algorithm",
+    "param_grid": {
+        "restart": {"type_": "range", "stop": 100},
+        "dataset": ["moons_size_100k", "moons_size_200k", "moons_size_300k", "moons_size_400k", "moons_size_500k", "moons_size_600k", "moons_size_700k", "moons_size_800k", "moons_size_900k", "moons_size_1000k"],
+        "n_iter": {"type_": "range", "start": 200, "stop": 2200, "step": 200},
+        "max_bias": [1.0],
+        "activation": ["thres"]
+    },
+    "plots": [
+        {
+            "type": "dataset_2d",
+            "name": "dataset_100",
+            "dataset": "moons_size_100",
+            "xlabel": "$N = 100$",
+            "xticks": false, "yticks": false, "legend": false,
+            "figsize": [2.5, 1.5]
+        },
+        {
+            "type": "dataset_2d",
+            "name": "dataset_1k",
+            "dataset": "moons_size_1k",
+            "xlabel": "$N = 1\\,000$",
+            "xticks": false, "yticks": false, "legend": false,
+            "figsize": [2.5, 1.5]
+        },
+        {
+            "type": "dataset_2d",
+            "name": "dataset_10k",
+            "dataset": "moons_size_10k",
+            "xlabel": "$N = 10\\,000$",
+            "xticks": false, "yticks": false, "legend": false,
+            "figsize": [2.5, 1.5]
+        },
+        {
+            "type": "heatmap",
+            "name": "interpolation",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_iter", "col": "n_samples", "val": "interpolated", "agg": "mean", "round": 2},
+            "contours": {"smoothing": 1.0, "levels": 8},
+            "xlabel": "number of samples $N$", "ylabel": "width of first layer $n$",
+            "figsize": [2.38, 1.9]
+        },
+        {
+            "type": "slices",
+            "name": "interpolation_iter",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_samples", "col": "n_iter", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [600, 1000, 2000],
+            "legend": {"title": "width $n$"},
+            "xlabel": "number of samples $N$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "slices",
+            "name": "interpolation_bias",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_iter", "col": "n_samples", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [100000, 300000, 1000000],
+            "legend": {"title": "samples $N$"},
+            "xlabel": "width of first layer $n$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "heatmap",
+            "name": "width",
+            "vmin": 0.0, "vmax": 12,
+            "pivot": {"idx": "n_iter", "col": "n_samples", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "contours": {"smoothing": 1.0, "levels": 15},
+            "xlabel": "number of samples $N$", "ylabel": "width of first layer $n$",
+            "figsize": [2.38, 1.9]
+        },
+        {
+            "type": "slices",
+            "name": "width_iter",
+            "vmin": 0.0, "vmax": 12,
+            "pivot": {"idx": "n_samples", "col": "n_iter", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [600, 1000, 2000],
+            "marker_threshold": 0.99,
+            "legend": {"title": "width $n$"},
+            "xlabel": "number of samples $N$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        },
+        {
+            "type": "slices",
+            "name": "width_bias",
+            "vmin": 0.0, "vmax": 12,
+            "pivot": {"idx": "n_iter", "col": "n_samples", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [100000, 300000, 1000000],
+            "marker_threshold": 0.99,
+            "legend": {"title": "samples $N$"},
+            "xlabel": "width of first layer $n$", "ylabel": "",
+            "figsize": [2.15, 0.95]
+        }
+    ]
+}
