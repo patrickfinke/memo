@@ -5,8 +5,10 @@
             "name": "boundary",
             "dataset": "lines",
             "model": {"n_iter": 2000, "max_bias": 1.0, "activation": "thres"},
-            "ylim": [-0.3, 0.3],
-            "figsize": [3.72, 2.00]
+            "ylim": [-0.55, 0.55],
+            "figsize": [4.0, 3.0],
+            "samples_on_top": true,
+            "markersize": 2.75
         }
     ]
 }

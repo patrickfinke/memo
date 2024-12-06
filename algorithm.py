@@ -60,7 +60,7 @@ class FirstLayer(base.TransformerMixin, base.BaseEstimator):
         self.dtype = dtype
 
     def fit(self, X, y):
-        X, y = check_X_y(X, y)
+        X, y = check_X_y(X, y, multi_output=True)
 
         self.dim_out_, self.dim_in_ = self.n_iter, X.shape[1]
 

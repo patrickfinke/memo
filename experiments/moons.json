@@ -21,7 +21,7 @@
             "pivot": {"idx": "n_iter", "col": "max_bias", "val": "interpolated", "agg": "mean", "round": 2},
             "contours": {"smoothing": 0.8, "levels": 15},
             "xlabel": "maximal bias $\\lambda$", "ylabel": "width of first layer $n$",
-            "figsize": [2.38, 1.9]
+            "figsize": [2.3, 1.9]
         },
         {
             "type": "slices",
@@ -31,7 +31,7 @@
             "slices": [50, 200, 500],
             "legend": {"title": "width $n$"},
             "xlabel": "maximal bias $\\lambda$", "ylabel": "",
-            "figsize": [2.15, 0.95]
+            "figsize": [2.0, 1.0]
         },
         {
             "type": "slices",
@@ -41,7 +41,7 @@
             "slices": [0.0, 0.75, 2.5],
             "legend": {"title": "max bias $\\lambda$"},
             "xlabel": "width of first layer $n$", "ylabel": "",
-            "figsize": [2.15, 0.95]
+            "figsize": [2.0, 1.0]
         },
         {
             "type": "heatmap",
@@ -50,7 +50,7 @@
             "pivot": {"idx": "n_iter", "col": "max_bias", "val": "second_dim_out", "agg": "mean", "round": 2},
             "contours": {"smoothing": 0.8, "levels": 15},
             "xlabel": "maximal bias $\\lambda$", "ylabel": "width of first layer $n$",
-            "figsize": [2.38, 1.9]
+            "figsize": [2.3, 1.9]
         },
         {
             "type": "slices",
@@ -61,7 +61,7 @@
             "marker_threshold": 0.99, "mark_every": 2,
             "legend": {"title": "width $n$"},
             "xlabel": "maximal bias $\\lambda$", "ylabel": "",
-            "figsize": [2.15, 0.95]
+            "figsize": [2.0, 1.0]
         },
         {
             "type": "slices",
@@ -72,7 +72,7 @@
             "marker_threshold": 0.99, "mark_every": 2,
             "legend": {"title": "max bias $\\lambda$"},
             "xlabel": "width of first layer $n$", "ylabel": "",
-            "figsize": [2.15, 0.95]
+            "figsize": [2.0, 1.0]
         },
         {
             "type": "boundary_2d",
@@ -88,7 +88,7 @@
             "model": {"n_iter": 100, "max_bias": 0.0, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": "$\\lambda = 0.0$", "ylabel": "$n = 100$",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": false
         },
         {
@@ -98,7 +98,7 @@
             "model": {"n_iter": 250, "max_bias": 0.0, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": " ", "ylabel": "$n = 250$",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": false
         },
         {
@@ -108,7 +108,7 @@
             "model": {"n_iter": 500, "max_bias": 0.0, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": " ", "ylabel": "$n = 500$",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": false
         },
         {
@@ -118,7 +118,7 @@
             "model": {"n_iter": 100, "max_bias": 0.5, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": "$\\lambda = 0.5$", "ylabel": " ",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": false
         },
         {
@@ -128,7 +128,7 @@
             "model": {"n_iter": 250, "max_bias": 0.5, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": " ", "ylabel": " ",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": true
         },
         {
@@ -138,7 +138,7 @@
             "model": {"n_iter": 500, "max_bias": 0.5, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": " ", "ylabel": " ",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": true
         },
         {
@@ -148,7 +148,7 @@
             "model": {"n_iter": 100, "max_bias": 1.0, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": "$\\lambda = 1.0$", "ylabel": " ",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": true
         },
         {
@@ -158,7 +158,7 @@
             "model": {"n_iter": 250, "max_bias": 1.0, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": " ", "ylabel": " ",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": true
         },
         {
@@ -168,7 +168,7 @@
             "model": {"n_iter": 500, "max_bias": 1.0, "activation": "thres"},
             "xticks": false, "yticks": false, "legend": false,
             "xlabel": " ", "ylabel": " ",
-            "figsize": [3.0, 1.5],
+            "figsize": [2.5, 1.25],
             "outline": true
         }
     ]

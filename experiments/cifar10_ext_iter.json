@@ -1,8 +1,8 @@
 {
     "trial": "algorithm",
     "param_grid": {
-        "restart": {"type_": "range", "stop": 25},
-        "dataset": ["mnist"],
+        "restart": {"type_": "range", "stop": 5},
+        "dataset": ["cifar10"],
         "n_iter": [2500, 5000, 10000],
         "max_bias": {"type_": "range", "start": 0.0, "stop": 2.75, "step": 0.25},
         "activation": ["thres"]
@@ -11,7 +11,7 @@
         {
             "type": "slices",
             "name": "width_iter",
-            "vmin": 0, "vmax": 27500,
+            "vmin": 47500, "vmax": 57500,
             "pivot": {"idx": "max_bias", "col": "n_iter", "val": "second_dim_out", "agg": "mean"},
             "slices": [2500, 5000, 10000],
             "marker_threshold": 0.99,

@@ -17,8 +17,8 @@ sns.set_style("whitegrid")
 plt.rcParams["xtick.major.pad"] = "1.5"
 plt.rcParams["ytick.major.pad"] = "1.5"
 
-SMALL_SIZE = 6
-MEDIUM_SIZE = 8
+SMALL_SIZE = 9
+MEDIUM_SIZE = 9
 BIGGER_SIZE = 10
 
 plt.rc("font", size=SMALL_SIZE)  # default text sizes
@@ -179,6 +179,7 @@ def dataset_images(name, config):
     classes    -- list of class labels
     img_width  -- width of images
     img_height -- height of images
+    img_channels -- number of color channels in the image (default 1)
     figsize    -- matplotlib figsize
     """
 
@@ -193,10 +194,10 @@ def dataset_images(name, config):
         figsize=figsize,
     )
 
-    shape = (config["img_width"], config["img_height"])
+    shape = (config.get("img_channels", 1), config["img_width"], config["img_height"])
     for n, ax in zip(config["classes"], axs.flatten()):
         idx = np.where(y == n)[0][0]
-        ax.imshow(X[idx].reshape(shape), cmap="gray", vmin=0, vmax=1)
+        ax.imshow(X[idx].reshape(shape).transpose(1, 2, 0), cmap="gray", vmin=0, vmax=1)
         ax.axis("off")
 
     return fig
@@ -217,6 +218,11 @@ def _load_df(name):
             n_samples[dataset_name] = X.shape[0]
 
         df["n_samples"] = df.apply(lambda row: n_samples[row["dataset"]], axis=1)
+
+
+    print("Loaded features:")
+    for column in df.columns:
+        print(f" * {column}")
 
     return df
 
@@ -351,6 +357,7 @@ def slices(name, config):
         palette="flare",
         seed=0,
         ax=ax,
+        legend=False if config.get("legend", False) is False else "auto"
     )
 
     # Plot markers if interpolation probability is high enough.
@@ -421,6 +428,8 @@ def boundary_2d(name, config):
     labels.
     """
 
+    markersize = config.get("markersize", 2)
+
     dataset, model_args = config["dataset"], config["model"]
     step = 150
 
@@ -435,8 +444,8 @@ def boundary_2d(name, config):
 
     # Plot the dataset to adjust the aspect ratio.
     fig, ax = plt.subplots(figsize=config.get("figsize"))
-    ax.plot(pos[:, 0], pos[:, 1], "or", markersize=2, label="$\mathcal{X}^+$")
-    ax.plot(neg[:, 0], neg[:, 1], "^b", markersize=2, label="$\mathcal{X}^-$")
+    ax.plot(pos[:, 0], pos[:, 1], "or", markersize=markersize, label="$\mathcal{X}^+$")
+    ax.plot(neg[:, 0], neg[:, 1], "^b", markersize=markersize, label="$\mathcal{X}^-$")
     if config.get("legend", True):
         ax.legend()
     ax.set_aspect("equal")
@@ -465,8 +474,8 @@ def boundary_2d(name, config):
     _plot_decision_surface(ax, model, step, "black", fill=False, linestyle="dashed")
 
     # Draw the dataset on top of the decision boundaries.
-    ax.plot(pos[:, 0], pos[:, 1], "or", markersize=2, label="$\mathcal{X}^+$")
-    ax.plot(neg[:, 0], neg[:, 1], "^b", markersize=2, label="$\mathcal{X}^-$")
+    ax.plot(pos[:, 0], pos[:, 1], "or", markersize=markersize, label="$\mathcal{X}^+$")
+    ax.plot(neg[:, 0], neg[:, 1], "^b", markersize=markersize, label="$\mathcal{X}^-$")
 
     # Draw markers for the points associated to each of the neurons.
     colors = itertools.cycle(plt.rcParams["axes.prop_cycle"].by_key()["color"])
@@ -479,8 +488,13 @@ def boundary_2d(name, config):
             markersize=12,
             markerfacecolor=color,
             markeredgewidth=1.0,
-            markeredgecolor="black",
+            markeredgecolor="black"
         )
+
+    if config.get("samples_on_top", False):
+        # Draw the dataset on top of the stars
+        ax.plot(pos[:, 0], pos[:, 1], "or", markersize=markersize, label="$\mathcal{X}^+$")
+        ax.plot(neg[:, 0], neg[:, 1], "^b", markersize=markersize, label="$\mathcal{X}^-$")
 
     set_ticks(ax, config)
     set_labels(ax, config)
@@ -504,7 +518,7 @@ def main():
         "dataset_images": dataset_images,
         "heatmap": heatmap,
         "slices": slices,
-        "boundary_2d": boundary_2d,
+        "boundary_2d": boundary_2d
     }
 
     for config in plots:

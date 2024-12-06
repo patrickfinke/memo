@@ -105,4 +105,4 @@ def save_plot(name, fig, subdir=""):
     path = get_path("plot", filename, subdir=subdir)
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    fig.savefig(path, bbox_inches="tight")
+    fig.savefig(path, bbox_inches="tight", pad_inches=0.0)

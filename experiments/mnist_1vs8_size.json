@@ -1,0 +1,32 @@
+{
+    "trial": "algorithm",
+    "param_grid": {
+        "restart": {"type_": "range", "stop": 25},
+        "dataset": ["mnist_1v8_size_10", "mnist_1v8_size_20", "mnist_1v8_size_30", "mnist_1v8_size_40", "mnist_1v8_size_50", "mnist_1v8_size_60", "mnist_1v8_size_70", "mnist_1v8_size_80", "mnist_1v8_size_90", "mnist_1v8_size_100"],
+        "n_iter": [500, 5000, 10000],
+        "max_bias": [0.5],
+        "activation": ["thres"]
+    },
+    "plots": [
+        {
+            "type": "slices",
+            "name": "interpolation_iter",
+            "vmin": 0.0, "vmax": 1.0,
+            "pivot": {"idx": "n_samples", "col": "n_iter", "val": "interpolated", "agg": "mean", "round": 2},
+            "slices": [5000],
+            "legend": {"title": "width $n$"},
+            "xlabel": "number of samples $N$", "ylabel": "",
+            "figsize": [2.15, 1.0]
+        },
+        {
+            "type": "slices",
+            "name": "width_iter",
+            "vmin": 0.0, "vmax": 83,
+            "pivot": {"idx": "n_samples", "col": "n_iter", "val": "second_dim_out", "agg": "mean", "round": 2},
+            "slices": [5000],
+            "marker_threshold": 0.99,
+            "xlabel": "number of samples $N$", "ylabel": "",
+            "figsize": [2.15, 1.0]
+        }
+    ]
+}
